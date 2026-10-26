@@ -1,0 +1,1053 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Ahmed Hani – Maschinenbau & Prozessautomatisierung">
+<meta property="og:description" content="Maschinenbau-Student (ISE, UDE): Konstruktion, Power Automate, Copilot-Studio-Agenten und ERP-/CRM-Systeme.">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Ahmed Hani</title>
+<meta name="description" content="Ahmed Hani – Maschinenbau-Student (ISE) an der Universität Duisburg-Essen. Konstruktion, Prozessautomatisierung mit Power Automate und Copilot Studio, ERP-/CRM-Systeme.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:wght@400;500;600&family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root {
+--bg: #0e0e12;
+--surface: #17171e;
+--line: #282832;
+--fg: #f2f0f7;
+--mute: #a19dae;
+--lav: #c7b4ff;
+--lav-ink: #1c1634;
+--sky: #8fd3ff;
+--mint: #8fe3b8;
+--paper: #f6f5f8;
+--f-display: 'Young Serif', Georgia, 'Times New Roman', serif;
+--f-body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+--f-hand: 'Caveat', 'Segoe Print', 'Bradley Hand', cursive;
+--f-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+color-scheme: dark;
+}
+:root:not([data-lang="en"]) .en { display: none !important; }
+:root[data-lang="en"] .de { display: none !important; }
+html { scroll-behavior: smooth; }
+body {
+background: var(--bg);
+color: var(--fg);
+font-family: var(--f-body);
+font-size: 16px;
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
+padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+overflow-x: clip;
+}
+body::before {
+content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+z-index: 70; background: var(--bg);
+}
+body::after {
+content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .5;
+background-image:
+radial-gradient(1px 1px at 12% 18%, var(--mute) 50%, transparent 51%),
+radial-gradient(1px 1px at 78% 9%, var(--mute) 50%, transparent 51%),
+radial-gradient(1px 1px at 41% 63%, var(--mute) 50%, transparent 51%),
+radial-gradient(1px 1px at 88% 72%, var(--mute) 50%, transparent 51%),
+radial-gradient(1px 1px at 23% 88%, var(--mute) 50%, transparent 51%),
+radial-gradient(1px 1px at 63% 34%, var(--mute) 50%, transparent 51%);
+}
+main, header, footer { position: relative; z-index: 1; }
+.wrap {
+max-width: 1160px; margin: 0 auto;
+padding-left: max(16px, env(safe-area-inset-left, 0px));
+padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 768px) {
+.wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); }
+}
+section { padding-block: clamp(64px, 10vw, 120px); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; text-wrap: balance; margin: 0; letter-spacing: -0.005em; }
+h1 { font-size: clamp(2.6rem, 7vw, 4.9rem); line-height: 1.02; }
+h2 { font-size: clamp(2rem, 4.6vw, 3.25rem); line-height: 1.08; }
+h3 { font-size: 1.5rem; line-height: 1.2; }
+p { margin: 0; }
+.lead { font-size: 1.125rem; color: var(--mute); max-width: 60ch; }
+.lead b, .lead strong { color: var(--fg); font-weight: 500; }
+.eyebrow { font-family: var(--f-mono); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+.mono { font-family: var(--f-mono); }
+.hand { font-family: var(--f-hand); font-weight: 700; color: var(--lav); font-size: 1.35em; line-height: 1; }
+.tnum { font-variant-numeric: tabular-nums; }
+.tag {
+display: inline-block; background: var(--lav); color: var(--lav-ink);
+font-family: var(--f-body); font-weight: 500; padding: .15em .45em; border-radius: 3px;
+box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px color-mix(in srgb, var(--lav) 60%, transparent);
+}
+.tag-tilt { transform: rotate(-1.5deg); }
+mark.hl { background: var(--lav); color: var(--lav-ink); padding: 0 .18em; border-radius: 3px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.uline { position: relative; white-space: nowrap; color: var(--fg); }
+.uline::after {
+content: ""; position: absolute; left: -2px; right: -2px; bottom: -4px; height: 3px; border-radius: 3px;
+background: var(--mint); transform-origin: left; transform: scaleX(1);
+}
+@media (prefers-reduced-motion: no-preference) {
+.uline::after { animation: draw-line 1.1s .9s cubic-bezier(.6,0,.2,1) both; }
+@keyframes draw-line { from { transform: scaleX(.05); } to { transform: scaleX(1); } }
+}
+.spark { position: relative; color: var(--fg); font-weight: 500; cursor: default; }
+.star {
+position: absolute; pointer-events: none; width: 10px; height: 10px; z-index: 5;
+background: var(--sky);
+clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+animation: star .9s ease-out forwards;
+}
+@keyframes star { 0% { transform: translate(0,0) scale(.3) rotate(0); opacity: 1; } 100% { transform: translate(var(--sx), var(--sy)) scale(1) rotate(90deg); opacity: 0; } }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; border-radius: 4px; }
+.btn {
+display: inline-flex; align-items: center; gap: .55rem; font-weight: 500; font-size: .95rem;
+padding: .8rem 1.25rem; border-radius: 999px; border: 1px solid var(--line);
+transition: transform .2s, background-color .2s, color .2s, border-color .2s;
+}
+.btn svg { width: 18px; height: 18px; }
+.btn:hover { transform: translateY(-2px); border-color: var(--lav); color: var(--lav); }
+.btn-primary { background: var(--lav); color: var(--lav-ink); border-color: var(--lav); }
+.btn-primary:hover { background: var(--fg); border-color: var(--fg); color: var(--lav-ink); }
+.chip {
+display: inline-flex; align-items: center; gap: .35rem;
+font-family: var(--f-mono); font-size: .75rem; color: var(--mute);
+border: 1px solid var(--line); border-radius: 999px; padding: .25rem .65rem;
+}
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px; }
+.mark { white-space: nowrap; display: flex; align-items: center; gap: 10px; font-family: var(--f-display); font-size: 1.15rem; }
+.mark-badge {
+width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%;
+background: var(--lav); color: var(--lav-ink); font-family: var(--f-mono); font-size: .75rem; font-weight: 500;
+}
+.status { display: flex; align-items: center; gap: 8px; font-size: .85rem; color: var(--mute); text-align: right; }
+.pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); flex-shrink: 0; position: relative; }
+.pulse::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--mint); }
+@media (prefers-reduced-motion: no-preference) {
+.pulse::after { animation: ping 1.8s ease-out infinite; }
+@keyframes ping { from { transform: scale(1); opacity: .7; } to { transform: scale(3); opacity: 0; } }
+}
+.hero { padding-block: clamp(24px, 5vw, 56px) clamp(56px, 8vw, 96px); }
+.hero-grid { display: grid; gap: clamp(32px, 5vw, 56px); align-items: center; }
+@media (min-width: 960px) { .hero-grid { grid-template-columns: 1.05fr 1fr; } }
+.hero-copy { display: grid; gap: 22px; min-width: 0; }
+.hero-copy .tag { font-size: clamp(1.05rem, 2.2vw, 1.35rem); justify-self: start; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+.board {
+position: relative; width: 100%; max-width: 580px; justify-self: center;
+aspect-ratio: 1 / 1.02; container-type: inline-size;
+}
+.sticker {
+position: absolute; left: var(--x); top: var(--y); width: var(--w); z-index: var(--z, 1);
+transform: translate(var(--dx, 0px), var(--dy, 0px)) rotate(var(--r, 0deg));
+cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
+}
+.sticker.dragging { cursor: grabbing; z-index: 20; }
+.sticker.dragging .pop { transform: scale(1.06); }
+.pop { transition: transform .2s; }
+.sticker img, .sticker svg { display: block; width: 100%; height: auto; pointer-events: none; }
+.shadow { filter: drop-shadow(0 10px 18px rgba(0,0,0,.55)); }
+@media (prefers-reduced-motion: no-preference) {
+.pop { animation: pop .8s cubic-bezier(.2,1.5,.4,1) both; animation-delay: calc(var(--i, 0) * 110ms + 150ms); }
+@keyframes pop { from { transform: scale(.55) rotate(-8deg); } to { transform: scale(1) rotate(0); } }
+.bob { animation: bob var(--bt, 6s) ease-in-out infinite; animation-delay: var(--bd, 0s); }
+@keyframes bob { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-7px) rotate(1.2deg); } }
+}
+.stk-label {
+position: absolute; font-family: var(--f-mono); font-size: max(9px, 2cqw); white-space: nowrap;
+background: var(--paper); color: var(--lav-ink); padding: .25em .6em; border-radius: 999px;
+box-shadow: 0 4px 10px rgba(0,0,0,.4);
+}
+.photo { border-radius: 50%; border: 1.4cqw solid var(--paper); background: var(--paper); }
+.photo-note { position: absolute; left: 88%; top: 58%; width: 60%; white-space: nowrap; color: var(--lav); font-family: var(--f-hand); font-weight: 700; font-size: max(15px, 4.2cqw); line-height: 1; transform: rotate(-10deg); }
+.photo-note svg { width: 55%; margin: -2px 0 0 -12%; transform: scaleX(-1) rotate(-20deg); }
+.note {
+background: var(--mint); color: #10261b; padding: 10% 10% 12%; border-radius: 3px;
+box-shadow: 0 10px 20px rgba(0,0,0,.45); display: grid; gap: 2px;
+}
+.note b { font-family: var(--f-hand); font-size: max(18px, 5.6cqw); line-height: 1; }
+.note small { font-family: var(--f-mono); font-size: max(8.5px, 1.9cqw); opacity: .8; }
+.polaroid { background: var(--paper); padding: 5% 5% 4%; border-radius: 3px; box-shadow: 0 16px 30px rgba(0,0,0,.55); }
+.screen { background: #111118; border-radius: 3px; padding: 7%; display: grid; gap: .9cqw; aspect-ratio: 1 / .92; overflow: hidden; }
+.scr-top { display: flex; align-items: center; gap: .6cqw; }
+.scr-top i { width: 1.2cqw; height: 1.2cqw; border-radius: 50%; background: var(--line); }
+.scr-top i:first-child { background: var(--lav); }
+.scr-top span { margin-left: auto; font-family: var(--f-mono); font-size: max(7px, 1.6cqw); color: var(--sky); display: flex; align-items: center; gap: .5cqw; }
+.scr-kpi { display: flex; align-items: baseline; gap: 1cqw; color: var(--fg); }
+.scr-kpi b { font-family: var(--f-display); font-weight: 400; font-size: max(16px, 5.4cqw); line-height: 1; }
+.scr-kpi span { font-family: var(--f-mono); font-size: max(7px, 1.6cqw); color: var(--mute); }
+.scr-row { display: flex; align-items: center; gap: 1cqw; padding: .6cqw .8cqw; border-radius: 2px; background: #1b1b24; }
+.scr-row i { height: .9cqw; border-radius: 2px; background: var(--line); flex: 1; }
+.scr-row em { font-style: normal; font-family: var(--f-mono); font-size: max(6.5px, 1.4cqw); padding: .15cqw .7cqw; border-radius: 99px; }
+.q { background: color-mix(in srgb, var(--lav) 25%, transparent); color: var(--lav); }
+.r { background: color-mix(in srgb, var(--mint) 22%, transparent); color: var(--mint); }
+.scr-bars { display: flex; align-items: flex-end; gap: .8cqw; height: 5.5cqw; }
+.scr-bars i { flex: 1; background: var(--lav); border-radius: 1px; height: var(--h); opacity: .85; transform-origin: bottom; }
+.polaroid-cap { font-family: var(--f-hand); font-weight: 700; color: #2a2440; font-size: max(14px, 4cqw); text-align: center; margin-top: 2.5%; line-height: 1; }
+@media (prefers-reduced-motion: no-preference) {
+.scr-row { animation: rowflash 4.5s ease-in-out infinite; }
+.scr-row:nth-child(2) { animation-delay: 1.5s; } .scr-row:nth-child(3) { animation-delay: 3s; }
+@keyframes rowflash { 0%, 70%, 100% { background: #1b1b24; } 80% { background: color-mix(in srgb, var(--sky) 22%, #1b1b24); } }
+.scr-bars i { animation: bars 3.2s ease-in-out infinite alternate; animation-delay: calc(var(--n) * -.4s); }
+@keyframes bars { from { transform: scaleY(.55); } to { transform: scaleY(1); } }
+}
+@media (prefers-reduced-motion: no-preference) {
+.spin { animation: spin 9s linear infinite; }
+.spin-steps { animation: spin 4.8s steps(16) infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.blink-eyes { transform-box: fill-box; transform-origin: center; animation: blinkeyes 4s infinite; }
+@keyframes blinkeyes { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+.antenna { animation: antenna 1.6s ease-in-out infinite; }
+@keyframes antenna { 50% { opacity: .35; } }
+.flow-dash { animation: dash 1.4s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -16; } }
+.flow-dot { animation: travel 2.8s cubic-bezier(.6,0,.4,1) infinite; }
+@keyframes travel { 0% { transform: translateX(0); } 45%, 55% { transform: translateX(50px); } 100% { transform: translateX(100px); } }
+.flow-dot2 { animation: travel2 3.6s cubic-bezier(.6,0,.4,1) infinite; }
+@keyframes travel2 { 0% { transform: translateX(0); } 40%, 50% { transform: translateX(122px); } 90%, 100% { transform: translateX(244px); } }
+.node-pulse { transform-box: fill-box; transform-origin: center; animation: nodep 2.8s ease-in-out infinite; }
+.node-pulse.n2 { animation-delay: 1.25s; } .node-pulse.n3 { animation-delay: 2.5s; }
+@keyframes nodep { 0%, 100% { transform: scale(1); } 10% { transform: scale(1.18); } 20% { transform: scale(1); } }
+.speed i { animation: speed .7s linear infinite; }
+.speed i:nth-child(2) { animation-delay: -.25s; } .speed i:nth-child(3) { animation-delay: -.5s; }
+@keyframes speed { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-60%); opacity: 0; } }
+.wiggle:hover svg, .tool:hover svg { animation: wig .5s ease-in-out; }
+@keyframes wig { 25% { transform: rotate(-12deg); } 75% { transform: rotate(10deg); } }
+}
+.speed { position: absolute; left: -22%; top: 30%; width: 26%; display: grid; gap: 18%; }
+.speed i { display: block; height: max(2px, .5cqw); background: var(--sky); border-radius: 2px; opacity: .8; }
+.speed i:nth-child(2) { width: 70%; margin-left: 30%; }
+.ghost { position: absolute; z-index: 15; pointer-events: none; left: 58%; top: 18%; display: flex; align-items: flex-start; gap: 2px; }
+.ghost svg { width: max(18px, 4.4cqw); height: auto; filter: drop-shadow(0 3px 5px rgba(0,0,0,.6)); }
+.ghost span { margin-top: 70%; font-family: var(--f-mono); font-size: max(9px, 2cqw); background: var(--sky); color: #06202e; padding: .3em .7em; border-radius: 4px 999px 999px 999px; white-space: nowrap; }
+@media (prefers-reduced-motion: no-preference) {
+.ghost { animation: roam 16s ease-in-out infinite; }
+@keyframes roam {
+0%, 100% { left: 58%; top: 18%; }
+22% { left: 22%; top: 30%; }
+45% { left: 30%; top: 66%; }
+70% { left: 66%; top: 86%; }
+85% { left: 76%; top: 40%; }
+}
+}
+.marquee { border-block: 1px solid var(--line); overflow: hidden; padding-block: 16px; }
+.marquee-track { display: flex; width: max-content; gap: 0; }
+.marquee-track span { display: inline-flex; align-items: center; gap: 22px; padding-right: 22px; font-family: var(--f-display); font-size: clamp(1.25rem, 2.6vw, 1.75rem); white-space: nowrap; }
+.marquee-track span::after { content: ""; width: 12px; height: 12px; background: var(--lav); clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
+@media (prefers-reduced-motion: no-preference) {
+.marquee-track { animation: marquee 38s linear infinite; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+}
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-top: clamp(48px, 7vw, 80px); }
+@media (min-width: 860px) { .stats { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+.stat { background: var(--bg); padding: clamp(18px, 3vw, 28px); display: grid; gap: 6px; align-content: start; }
+.stat b { font-family: var(--f-display); font-weight: 400; font-size: clamp(2.2rem, 5vw, 3.25rem); line-height: 1; color: var(--lav); }
+.stat span { color: var(--mute); font-size: .9rem; }
+.head { display: grid; gap: 14px; margin-bottom: clamp(32px, 5vw, 56px); max-width: 780px; }
+.head-note { font-family: var(--f-hand); font-weight: 700; color: var(--lav); font-size: 1.6rem; transform: rotate(-2deg); justify-self: start; line-height: 1.1; }
+.pillars { display: grid; gap: 18px; }
+@media (min-width: 900px) { .pillars { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+.pillar {
+background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: clamp(22px, 3vw, 30px);
+display: flex; flex-direction: column; gap: 16px; transition: transform .35s cubic-bezier(.2,1.4,.4,1), border-color .25s;
+}
+.pillar:hover { transform: translateY(-6px) rotate(-.8deg); border-color: color-mix(in srgb, var(--lav) 55%, var(--line)); }
+.pillar:nth-child(2):hover { transform: translateY(-6px) rotate(.8deg); }
+.pillar-icon { width: 76px; height: 76px; border-radius: 20px; background: var(--bg); border: 1px solid var(--line); display: grid; place-items: center; }
+.pillar-icon svg { width: 46px; height: 46px; overflow: visible; }
+.pillar p { color: var(--mute); }
+.pillar ul { list-style: none; margin: auto 0 0; padding: 16px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; font-family: var(--f-mono); font-size: .85rem; }
+.pillar li { display: flex; gap: 10px; }
+.pillar li::before { content: ""; width: 7px; height: 7px; margin-top: .5em; border-radius: 2px; background: var(--lav); flex-shrink: 0; }
+.jobs { display: grid; gap: 16px; }
+.job {
+display: grid; gap: 14px 40px; padding: clamp(22px, 3vw, 32px); border: 1px solid var(--line); border-radius: 22px; background: var(--surface);
+}
+@media (min-width: 860px) { .job { grid-template-columns: 250px minmax(0,1fr); } }
+.job-meta { display: grid; gap: 4px; align-content: start; }
+.job-date { display: inline-flex; align-items: center; gap: 8px; font-family: var(--f-mono); font-size: .78rem; color: var(--lav); }
+.job-co { font-family: var(--f-display); font-size: 1.5rem; line-height: 1.15; }
+.job-loc { font-family: var(--f-mono); font-size: .75rem; color: var(--mute); }
+.job h3 { font-family: var(--f-body); font-weight: 600; font-size: 1.125rem; }
+.job ul { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 10px; color: var(--mute); }
+.job li { display: flex; gap: 12px; }
+.job li::before { content: ""; width: 14px; height: 2px; margin-top: .75em; background: var(--lav); flex-shrink: 0; border-radius: 2px; }
+.job li b { color: var(--fg); font-weight: 600; }
+.job .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.job-body { min-width: 0; }
+.projects { display: grid; gap: 18px; }
+@media (min-width: 900px) { .projects { grid-template-columns: repeat(2, minmax(0,1fr)); } .proj-wide { grid-column: 1 / -1; } }
+.proj { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.proj-body { padding: clamp(22px, 3vw, 32px); display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.proj-body > p { color: var(--mute); }
+.proj-title { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+.proj-title h3 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
+.proj ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; color: var(--mute); font-size: .95rem; }
+.proj li { display: flex; gap: 10px; }
+.proj li svg { width: 18px; height: 18px; color: var(--lav); flex-shrink: 0; margin-top: .2em; }
+.proj .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); }
+.proj-visual { position: relative; background: var(--bg); border-bottom: 1px solid var(--line); padding: clamp(18px, 3vw, 28px); }
+@media (min-width: 900px) {
+.proj-wide { flex-direction: row; }
+.proj-wide .proj-visual { flex: 1.1; border-bottom: 0; border-right: 1px solid var(--line); display: grid; align-content: center; }
+.proj-wide .proj-body { flex: 1; }
+}
+.vis-label { font-family: var(--f-mono); font-size: .7rem; color: var(--mute); letter-spacing: .1em; text-transform: uppercase; }
+.fav { position: absolute; right: 18px; top: 12px; font-family: var(--f-hand); font-weight: 700; font-size: 1.5rem; color: var(--lav); transform: rotate(6deg); }
+.app { margin-top: 14px; border: 1px solid var(--line); border-radius: 14px; background: #121219; overflow: hidden; transform: rotate(-1.2deg); box-shadow: 0 18px 40px rgba(0,0,0,.5); }
+.app-top { display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.app-top i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.app-top b { margin-left: 8px; font-family: var(--f-display); font-weight: 400; font-size: .95rem; }
+.app-top span { margin-left: auto; display: flex; align-items: center; gap: 6px; font-family: var(--f-mono); font-size: .7rem; color: var(--sky); }
+.live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sky); }
+@media (prefers-reduced-motion: no-preference) { .live-dot { animation: antenna 1.2s ease-in-out infinite; } }
+.app-kpis { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; padding: 12px 14px 4px; }
+.app-kpi { border: 1px solid var(--line); border-radius: 10px; padding: 10px; min-width: 0; }
+.app-kpi b { display: block; font-family: var(--f-display); font-weight: 400; font-size: 1.35rem; line-height: 1.1; }
+.app-kpi small { font-family: var(--f-mono); font-size: .65rem; color: var(--mute); display: block; overflow-wrap: anywhere; }
+.app-table { padding: 10px 14px 14px; display: grid; gap: 6px; }
+.app-row { display: grid; grid-template-columns: 22px minmax(0,1fr) auto auto; align-items: center; gap: 10px; padding: 7px 8px; border-radius: 8px; background: #181820; }
+.app-row .av { width: 22px; height: 22px; border-radius: 50%; background: color-mix(in srgb, var(--lav) 30%, #181820); }
+.app-row .bar { height: 7px; border-radius: 4px; background: var(--line); width: var(--bw); }
+.app-row em { font-style: normal; font-family: var(--f-mono); font-size: .65rem; padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
+.st-open { color: var(--sky); border: 1px solid color-mix(in srgb, var(--sky) 45%, transparent); }
+.st-paid { color: var(--mint); border: 1px solid color-mix(in srgb, var(--mint) 45%, transparent); }
+@media (prefers-reduced-motion: no-preference) {
+.app-row { animation: rowflash2 6s ease-in-out infinite; animation-delay: calc(var(--n) * 1.5s); }
+@keyframes rowflash2 { 0%, 75%, 100% { background: #181820; } 82% { background: color-mix(in srgb, var(--lav) 18%, #181820); } }
+}
+.tools { display: flex; flex-wrap: wrap; gap: 12px; }
+.tool {
+display: inline-flex; align-items: center; gap: 8px; padding: .6rem 1rem; border-radius: 999px;
+background: var(--surface); border: 1px solid var(--line); font-size: .95rem;
+transform: rotate(var(--r, 0deg)); transition: transform .3s cubic-bezier(.2,1.5,.4,1), background-color .2s, color .2s, border-color .2s;
+}
+.tool svg { width: 17px; height: 17px; color: var(--lav); }
+.tool:hover { transform: rotate(0deg) translateY(-4px) scale(1.04); background: var(--lav); color: var(--lav-ink); border-color: var(--lav); }
+.tool:hover svg { color: var(--lav-ink); }
+.tool:nth-child(3n+1) { --r: -2deg; } .tool:nth-child(3n+2) { --r: 1.5deg; } .tool:nth-child(5n) { --r: -1deg; }
+.edu { display: grid; gap: 24px; align-items: start; }
+@media (min-width: 900px) { .edu { grid-template-columns: 1.3fr 1fr; } }
+.edu-card { border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: var(--surface); }
+.edu-card p { font-family: var(--f-mono); font-size: .75rem; color: var(--mute); padding: 12px 18px; border-bottom: 1px solid var(--line); letter-spacing: .1em; text-transform: uppercase; }
+.edu-card ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); }
+.edu-card li { padding: 14px 18px; border-bottom: 1px solid var(--line); font-size: .95rem; }
+.edu-card li:nth-child(odd) { border-right: 1px solid var(--line); }
+.edu-card li:nth-last-child(-n+2) { border-bottom: 0; }
+.off-grid { display: grid; gap: 18px; margin-top: clamp(32px, 5vw, 48px); }
+@media (min-width: 900px) { .off-grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+.off { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 24px; display: grid; gap: 10px; align-content: start; transition: transform .35s cubic-bezier(.2,1.4,.4,1); }
+.off:hover { transform: translateY(-5px) rotate(var(--hr, -1deg)); }
+.off:nth-child(2) { --hr: 1deg; }
+.off .ico { width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; background: var(--lav); color: var(--lav-ink); }
+.off .ico svg { width: 26px; height: 26px; }
+.off h3 { font-family: var(--f-body); font-weight: 600; font-size: 1.1rem; }
+.off p { color: var(--mute); }
+.langs { display: grid; gap: 6px; margin-top: 4px; }
+.langs div { display: flex; justify-content: space-between; gap: 12px; font-size: .95rem; padding-bottom: 6px; border-bottom: 1px dashed var(--line); }
+.langs div:last-child { border-bottom: 0; }
+.langs span:last-child { color: var(--lav); font-family: var(--f-mono); font-size: .8rem; text-align: right; }
+.pixel-row { display: flex; justify-content: center; align-items: flex-end; gap: clamp(24px, 6vw, 64px); margin-top: 8px; }
+.pixel-row svg { image-rendering: pixelated; }
+.contact { display: grid; gap: 36px; align-items: end; }
+@media (min-width: 960px) { .contact { grid-template-columns: 1.2fr 1fr; } }
+.contact h2 { font-size: clamp(2.6rem, 7vw, 4.6rem); }
+.contact-actions { display: grid; gap: 12px; min-width: 0; }
+.mailbox { display: flex; align-items: stretch; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); overflow: hidden; }
+.mailbox a { flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; padding: 16px 18px; }
+.mailbox a:hover { color: var(--lav); }
+.mailbox a svg { width: 20px; height: 20px; color: var(--lav); flex-shrink: 0; }
+#email { font-family: var(--f-mono); font-size: .95rem; overflow-wrap: anywhere; user-select: all; }
+.mailbox button { display: flex; align-items: center; gap: 8px; padding: 0 18px; background: none; border: 0; border-left: 1px solid var(--line); color: var(--mute); font: inherit; font-family: var(--f-mono); font-size: .8rem; cursor: pointer; }
+.mailbox button:hover { color: var(--lav); }
+.mailbox button svg { width: 16px; height: 16px; }
+.linkedin { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 18px; border-radius: 18px; background: var(--lav); color: var(--lav-ink); font-weight: 500; transition: transform .2s, background-color .2s; }
+.linkedin:hover { transform: translateY(-2px); background: var(--fg); }
+.linkedin span { display: flex; align-items: center; gap: 12px; }
+.linkedin svg { width: 20px; height: 20px; }
+footer { border-top: 1px solid var(--line); }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding-block: 24px; font-family: var(--f-mono); font-size: .75rem; color: var(--mute); }
+.pill {
+position: fixed; z-index: 60; left: 50%; transform: translateX(-50%);
+bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+display: flex; align-items: center; gap: 2px; padding: 5px; border-radius: 999px;
+background: var(--lav); color: var(--lav-ink); box-shadow: 0 12px 30px rgba(0,0,0,.5);
+max-width: calc(100vw - 24px);
+}
+.pill a, .pill button {
+padding: .5rem .95rem; border-radius: 999px; font-size: .95rem; font-weight: 500; white-space: nowrap;
+background: none; border: 0; color: inherit; font-family: var(--f-body); cursor: pointer; transition: background-color .2s, color .2s;
+}
+.pill a:hover { background: color-mix(in srgb, var(--lav-ink) 12%, transparent); }
+.pill button { background: var(--lav-ink); color: var(--lav); font-family: var(--f-mono); font-size: .8rem; margin-left: 4px; }
+.pill button:hover { background: var(--fg); color: var(--lav-ink); }
+@media (max-width: 400px) { .pill a, .pill button { padding: .5rem .7rem; font-size: .88rem; } }
+.clock {
+position: fixed; z-index: 55; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+display: none; align-items: center; gap: 8px; background: var(--paper); color: var(--lav-ink);
+font-family: var(--f-mono); font-size: .72rem; padding: .4rem .75rem; border-radius: 8px; box-shadow: 0 8px 20px rgba(0,0,0,.4);
+}
+.clock svg { width: 14px; height: 14px; }
+@media (min-width: 1100px) { .clock { display: flex; } }
+</style>
+</head>
+<body>
+<header>
+<div class="wrap topbar">
+<a href="#start" class="mark"><span class="mark-badge">AH</span>Ahmed Hani</a>
+<p class="status"><span class="pulse"></span>
+<span class="de">Offen für Werkstudentenstellen &amp; Praktika</span>
+<span class="en">Open to working-student roles &amp; internships</span>
+</p>
+</div>
+</header>
+<main id="start">
+<!-- ================= HERO ================= -->
+<section class="hero">
+<div class="wrap hero-grid">
+<div class="hero-copy">
+<p class="eyebrow">
+<span class="de">B.Sc. Maschinenbau (ISE) · Universität Duisburg-Essen</span>
+<span class="en">B.Sc. Mechanical Engineering (ISE) · University of Duisburg-Essen</span>
+</p>
+<h1>
+<span class="de">Kurz gesagt:</span><span class="en">Me, basically:</span><br>
+<span class="spark" data-auto>Ahmed Hani.</span>
+</h1>
+<span class="tag tag-tilt">
+<span class="de">Der Ingenieur, der Prozesse automatisiert.</span>
+<span class="en">The engineer who automates the process.</span>
+</span>
+<p class="lead">
+<span class="de">Ich verbinde mechanische <span class="hand">Präzision</span> mit intelligenter Prozessautomatisierung. Ich konstruiere Fahrwerkskomponenten in Siemens NX und baue Power-Automate-Flows, agentische KI-Agenten in Copilot Studio und ERP-/CRM-Systeme, die Abläufe <span class="spark">messbar und pünktlich</span> machen.</span>
+<span class="en">I bridge mechanical <span class="hand">precision</span> with intelligent process automation. I design suspension components in Siemens NX and build Power Automate flows, agentic AI agents in Copilot Studio and ERP/CRM systems that make operations <span class="spark">measurable and on time</span>.</span>
+</p>
+<p class="lead">
+<span class="de">Denn <span class="uline">gute Automatisierung</span> merkt man nicht. Man merkt nur, dass nichts mehr liegen bleibt.</span>
+<span class="en">Because <span class="uline">good automation</span> is the kind you never notice. You only notice that nothing gets stuck any more.</span>
+</p>
+<div class="cta">
+<a href="#projekte" class="btn btn-primary"><i data-lucide="arrow-down-right"></i><span class="de">Projekte ansehen</span><span class="en">See projects</span></a>
+<a href="#kontakt" class="btn"><i data-lucide="mail"></i><span class="de">Kontakt aufnehmen</span><span class="en">Get in touch</span></a>
+</div>
+</div>
+<!-- sticker board -->
+<div class="board" id="board" aria-label="Interaktive Sticker – zum Verschieben ziehen / Interactive stickers – drag to move">
+<!-- sticky note -->
+<div class="sticker" style="--x:2%;--y:3%;--w:23%;--r:-7deg;--z:3">
+<div class="pop" style="--i:0"><div class="bob" style="--bt:7s">
+<div class="note"><b>OTIF ✓</b><small><span class="de">KPI validiert</span><span class="en">KPI validated</span></small></div>
+</div></div>
+</div>
+<!-- photo -->
+<div class="sticker" style="--x:33%;--y:7%;--w:29%;--r:-4deg;--z:6">
+<div class="pop" style="--i:1"><div class="bob" style="--bt:6.5s;--bd:-2s">
+<img class="photo shadow" src="photo.webp" alt="Ahmed Hani" width="320" height="320">
+</div></div>
+<div class="photo-note"><span class="de">das bin ich!</span><span class="en">that's me!</span>
+<svg viewBox="0 0 60 30" fill="none"><path d="M4 4 C 20 4, 38 10, 52 24" style="stroke:var(--lav)" stroke-width="2.5" stroke-linecap="round"/><path d="M42 24 L53 25 L50 14" style="stroke:var(--lav)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+</div>
+<!-- pixel gear -->
+<div class="sticker" style="--x:77%;--y:4%;--w:16%;--r:0deg;--z:2">
+<div class="pop" style="--i:2"><div class="bob" style="--bt:8s;--bd:-1s">
+<svg class="spin-steps shadow" id="px-gear" aria-hidden="true"></svg>
+</div></div>
+</div>
+<!-- flow -->
+<div class="sticker" style="--x:0%;--y:39%;--w:38%;--r:3deg;--z:4">
+<div class="pop" style="--i:3"><div class="bob" style="--bt:6s;--bd:-3s">
+<svg viewBox="0 0 140 70" fill="none" class="shadow" aria-hidden="true">
+<rect x="1" y="1" width="138" height="68" rx="14" style="fill:var(--surface);stroke:var(--line)" stroke-width="1.5"/>
+<path class="flow-dash" d="M20 30 H120" style="stroke:var(--mute)" stroke-width="2" stroke-dasharray="5 3"/>
+<circle class="node-pulse n1" cx="20" cy="30" r="10" style="fill:var(--bg);stroke:var(--lav)" stroke-width="2.5"/>
+<circle class="node-pulse n2" cx="70" cy="30" r="10" style="fill:var(--bg);stroke:var(--sky)" stroke-width="2.5"/>
+<circle class="node-pulse n3" cx="120" cy="30" r="10" style="fill:var(--bg);stroke:var(--mint)" stroke-width="2.5"/>
+<path d="M16 30 h8 M20 26 v8" style="stroke:var(--lav)" stroke-width="2" stroke-linecap="round"/>
+<path d="M66 26 l4 4 l-4 4 M71 26 l4 4 l-4 4" style="stroke:var(--sky)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M115 27 h10 v7 h-10 z M115 27 l5 4 l5 -4" style="stroke:var(--mint)" stroke-width="1.6" stroke-linejoin="round"/>
+<circle class="flow-dot" cx="20" cy="30" r="3.5" style="fill:var(--fg)"/>
+<text x="70" y="58" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" style="fill:var(--mute)">Power Automate</text>
+</svg>
+</div></div>
+</div>
+<!-- polaroid -->
+<div class="sticker" style="--x:51%;--y:31%;--w:44%;--r:6deg;--z:5">
+<div class="pop" style="--i:4"><div class="bob" style="--bt:7.5s;--bd:-4s">
+<div class="polaroid">
+<div class="screen">
+<div class="scr-top"><i></i><i></i><i></i><span><i class="live-dot" style="width:1.1cqw;height:1.1cqw"></i>live</span></div>
+<div class="scr-kpi"><b>300+</b><span><span class="de">Kunden</span><span class="en">customers</span></span></div>
+<div class="scr-row"><i></i><em class="q"><span class="de">Angebot</span><span class="en">Quote</span></em></div>
+<div class="scr-row"><i></i><em class="r"><span class="de">Rechnung</span><span class="en">Invoice</span></em></div>
+<div class="scr-row"><i></i><em class="q"><span class="de">Angebot</span><span class="en">Quote</span></em></div>
+<div class="scr-bars"><i style="--h:40%;--n:0"></i><i style="--h:70%;--n:1"></i><i style="--h:55%;--n:2"></i><i style="--h:90%;--n:3"></i><i style="--h:65%;--n:4"></i><i style="--h:100%;--n:5"></i></div>
+</div>
+<p class="polaroid-cap">Falcon 28 · ERP/CRM</p>
+</div>
+</div></div>
+</div>
+<!-- copilot bot -->
+<div class="sticker" style="--x:33%;--y:59%;--w:14%;--r:-8deg;--z:6">
+<div class="pop" style="--i:5"><div class="bob" style="--bt:5.5s;--bd:-1.5s">
+<svg viewBox="0 0 64 64" fill="none" class="shadow" aria-hidden="true">
+<rect x="2" y="2" width="60" height="60" rx="18" style="fill:var(--lav)"/>
+<line x1="32" y1="10" x2="32" y2="19" style="stroke:var(--lav-ink)" stroke-width="3" stroke-linecap="round"/>
+<circle class="antenna" cx="32" cy="9" r="3.5" style="fill:var(--lav-ink)"/>
+<rect x="13" y="19" width="38" height="30" rx="10" style="fill:var(--lav-ink)"/>
+<g class="blink-eyes"><rect x="21" y="28" width="6" height="9" rx="3" style="fill:var(--sky)"/><rect x="37" y="28" width="6" height="9" rx="3" style="fill:var(--sky)"/></g>
+<rect x="26" y="41" width="12" height="2.5" rx="1.25" style="fill:var(--lav)"/>
+</svg>
+</div></div>
+<span class="stk-label" style="left:-30%;top:104%">Copilot Studio</span>
+</div>
+<!-- pixel race car -->
+<div class="sticker" style="--x:6%;--y:78%;--w:30%;--r:-3deg;--z:4">
+<div class="pop" style="--i:6"><div class="bob" style="--bt:4.5s;--bd:-.5s">
+<div style="position:relative">
+<div class="speed" aria-hidden="true"><i></i><i></i><i></i></div>
+<svg id="px-car" class="shadow" aria-hidden="true"></svg>
+</div>
+</div></div>
+<span class="stk-label" style="left:40%;top:-30%">Formula Student</span>
+</div>
+<!-- roaming cursor -->
+<div class="ghost" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M3 2 L20 11 L12.5 12.8 L9 20 Z" style="fill:var(--sky);stroke:#06202e" stroke-width="1.4" stroke-linejoin="round"/></svg>
+<span id="ghost-text">Ahmed konstruiert…</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+<div class="marquee-track">
+<span>Siemens NX</span><span>Power Automate</span><span>Copilot Studio</span><span>Dynamics 365 F&amp;O</span><span>ERP / CRM</span><span>React &amp; Vite</span><span>Supabase</span><span>Python</span><span>Order-to-Cash</span><span>OTIF</span><span>Formula Student</span>
+<span>Siemens NX</span><span>Power Automate</span><span>Copilot Studio</span><span>Dynamics 365 F&amp;O</span><span>ERP / CRM</span><span>React &amp; Vite</span><span>Supabase</span><span>Python</span><span>Order-to-Cash</span><span>OTIF</span><span>Formula Student</span>
+</div>
+</div>
+<!-- ================= WORK / PILLARS ================= -->
+<section id="arbeit">
+<div class="wrap">
+<div class="head">
+<p class="eyebrow"><span class="de">Was ich mache</span><span class="en">What I do</span></p>
+<h2><span class="de">Drei Disziplinen, ein Ziel: <mark class="hl">Abläufe, die funktionieren.</mark></span><span class="en">Three disciplines, one goal: <mark class="hl">processes that work.</mark></span></h2>
+</div>
+<div class="pillars">
+<article class="pillar">
+<div class="pillar-icon">
+<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><g class="spin" style="transform-origin:24px 24px">
+<path d="M24 4 l3 5 5-1 1 5 5 2-2 5 4 4-4 4 2 5-5 2-1 5-5-1-3 5-3-5-5 1-1-5-5-2 2-5-4-4 4-4-2-5 5-2 1-5 5 1z" style="fill:var(--surface);stroke:var(--lav)" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="24" cy="24" r="7" style="fill:var(--bg);stroke:var(--sky)" stroke-width="2"/></g></svg>
+</div>
+<h3><span class="de">Konstruktion &amp; CAD</span><span class="en">Mechanical design &amp; CAD</span></h3>
+<p><span class="de">Konstruktion und Auslegung von Fahrwerkskomponenten in Siemens NX, vom 3D-Modell über Baugruppen bis zur fertigungsgerechten Zeichnung.</span><span class="en">Design and sizing of suspension components in Siemens NX, from 3D model and assemblies to drawings ready for manufacturing.</span></p>
+<ul class="de"><li>Siemens NX · SolidWorks · AutoCAD</li><li>Baugruppen &amp; technische Zeichnungen</li><li>CAD → Fertigung → Testing</li></ul>
+<ul class="en"><li>Siemens NX · SolidWorks · AutoCAD</li><li>Assemblies &amp; technical drawings</li><li>CAD → manufacturing → testing</li></ul>
+</article>
+<article class="pillar">
+<div class="pillar-icon">
+<svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+<path class="flow-dash" d="M12 12 V24 H36 V36" style="stroke:var(--mute)" stroke-width="2" stroke-dasharray="4 4"/>
+<rect class="node-pulse n1" x="5" y="5" width="14" height="14" rx="4" style="fill:var(--bg);stroke:var(--lav)" stroke-width="2"/>
+<circle class="node-pulse n2" cx="24" cy="24" r="6" style="fill:var(--bg);stroke:var(--sky)" stroke-width="2"/>
+<rect class="node-pulse n3" x="29" y="29" width="14" height="14" rx="4" style="fill:var(--bg);stroke:var(--mint)" stroke-width="2"/>
+</svg>
+</div>
+<h3><span class="de">Prozesse &amp; Automatisierung</span><span class="en">Processes &amp; automation</span></h3>
+<p><span class="de">Order-to-Cash-Prozesse in Microsoft Dynamics 365 F&amp;O aufnehmen, Lücken finden und mit Power-Automate-Flows schließen, mit KPIs, die belastbar bleiben.</span><span class="en">Mapping Order-to-Cash processes in Microsoft Dynamics 365 F&amp;O, finding the gaps and closing them with Power Automate flows, with KPIs that hold up.</span></p>
+<ul class="de"><li>Power-Automate-Flows</li><li>Dynamics 365 F&amp;O</li><li>Order-to-Cash &amp; Gap-Analyse</li><li>OTIF-Validierung</li></ul>
+<ul class="en"><li>Power Automate flows</li><li>Dynamics 365 F&amp;O</li><li>Order-to-Cash &amp; gap analysis</li><li>OTIF validation</li></ul>
+</article>
+<article class="pillar">
+<div class="pillar-icon">
+<svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+<line x1="24" y1="5" x2="24" y2="12" style="stroke:var(--lav)" stroke-width="2.5" stroke-linecap="round"/>
+<circle class="antenna" cx="24" cy="5" r="3" style="fill:var(--sky)"/>
+<rect x="7" y="12" width="34" height="27" rx="9" style="fill:var(--surface);stroke:var(--lav)" stroke-width="2"/>
+<g class="blink-eyes"><rect x="16" y="20" width="5" height="8" rx="2.5" style="fill:var(--sky)"/><rect x="27" y="20" width="5" height="8" rx="2.5" style="fill:var(--sky)"/></g>
+<path d="M19 33 h10" style="stroke:var(--mute)" stroke-width="2" stroke-linecap="round"/>
+</svg>
+</div>
+<h3><span class="de">KI-Agenten &amp; Software</span><span class="en">AI agents &amp; software</span></h3>
+<p><span class="de">Agentische KI-Assistenten in Copilot Studio, Webentwicklung und eigene ERP-/CRM-Systeme, gebaut für die Menschen, die täglich damit arbeiten.</span><span class="en">Agentic AI assistants in Copilot Studio, web development and custom ERP/CRM systems, built for the people who use them every day.</span></p>
+<ul class="de"><li>Copilot Studio (agentische KI)</li><li>Python (APIs, AI Agents)</li><li>React · Vite · Tailwind CSS</li><li>ERP/CRM · Supabase · PostgreSQL</li></ul>
+<ul class="en"><li>Copilot Studio (agentic AI)</li><li>Python (APIs, AI agents)</li><li>React · Vite · Tailwind CSS</li><li>ERP/CRM · Supabase · PostgreSQL</li></ul>
+</article>
+</div>
+<div class="stats">
+<div class="stat"><b class="tnum">106</b><span><span class="de">ECTS nach 6 Semestern an der UDE</span><span class="en">ECTS after 6 semesters at UDE</span></span></div>
+<div class="stat"><b class="tnum">300+</b><span><span class="de">Kunden mit Angeboten &amp; Rechnungen in Falcon 28</span><span class="en">customers with quotes &amp; invoices in Falcon 28</span></span></div>
+<div class="stat"><b class="tnum">10</b><span><span class="de">gleichzeitige Nutzer im System</span><span class="en">concurrent users on the system</span></span></div>
+<div class="stat"><b class="tnum">3</b><span><span class="de">Sprachen: Deutsch, Englisch, Arabisch</span><span class="en">languages: German, English, Arabic</span></span></div>
+</div>
+</div>
+</section>
+<!-- ================= EXPERIENCE ================= -->
+<section id="erfahrung">
+<div class="wrap">
+<div class="head">
+<p class="eyebrow"><span class="de">Berufserfahrung</span><span class="en">Experience</span></p>
+<h2><span class="de">Wo ich Erfahrung sammle</span><span class="en">Where I've been working</span></h2>
+</div>
+<div class="jobs">
+<article class="job">
+<div class="job-meta">
+<span class="job-date tnum"><span class="pulse"></span><span class="de">seit 09/2026</span><span class="en">since 09/2026</span></span>
+<span class="job-co">Signode</span>
+<span class="job-loc">Hilden</span>
+</div>
+<div class="job-body">
+<h3><span class="de">Werkstudent – Customer Service &amp; Prozessoptimierung</span><span class="en">Working student – Customer Service &amp; Process Optimization</span></h3>
+<ul class="de">
+<li><span><b>Prozessaufnahme &amp; Gap-Analyse:</b> End-to-End-Dokumentation des Order-to-Cash-Prozesses (Auftragserfassung, Einkauf, Lieferterminbestätigung, Kreditprüfung) nach der Migration auf Microsoft Dynamics 365 F&amp;O, inklusive operativem Referenzhandbuch als zentrale Wissensbasis.</span></li>
+<li><span><b>Business Process Automation:</b> Konzeption, Test und Pilotierung von Power-Automate-Flows, die verzögerte Auftragspositionen überwachen und automatisch per E-Mail benachrichtigen. Ergebnis: deutlich weniger manuelle Routinearbeit im Customer Service.</span></li>
+<li><span><b>KPI-Integrität:</b> Absicherung geschäftskritischer Kennzahlen wie OTIF (On-Time In-Full) gegen Reporting-Verzerrungen durch automatisierte Systemupdates, mit systematischer Edge-Case-Validierung.</span></li>
+<li><span><b>IT-Governance:</b> Alle Lösungen innerhalb des M365-Berechtigungskonzepts und der KI-Governance-Richtlinien; Konzeption zukünftiger Read-only-Copilot-Assistenten.</span></li>
+</ul>
+<ul class="en">
+<li><span><b>Process mapping &amp; gap analysis:</b> end-to-end documentation of the Order-to-Cash process (order entry, purchasing, delivery date confirmation, credit check) after the migration to Microsoft Dynamics 365 F&amp;O, including an operational reference handbook as the team's central knowledge base.</span></li>
+<li><span><b>Business process automation:</b> designed, tested and piloted Power Automate flows that monitor delayed order lines and send automatic email notifications, clearly reducing repetitive manual work in customer service.</span></li>
+<li><span><b>KPI integrity:</b> safeguarded business-critical KPIs such as OTIF (On-Time In-Full) against reporting distortions from automated system updates, with systematic edge-case validation.</span></li>
+<li><span><b>IT governance:</b> every solution built within the M365 permission model and AI governance policies; concept work for future read-only Copilot assistants.</span></li>
+</ul>
+<div class="chips"><span class="chip">Dynamics 365 F&amp;O</span><span class="chip">Power Automate</span><span class="chip">Copilot</span><span class="chip">OTIF</span><span class="chip">M365</span></div>
+</div>
+</article>
+<article class="job">
+<div class="job-meta">
+<span class="job-date tnum"><span class="pulse"></span><span class="de">seit 08/2025</span><span class="en">since 08/2025</span></span>
+<span class="job-co">Formula Student Team UDE</span>
+<span class="job-loc">Duisburg</span>
+</div>
+<div class="job-body">
+<h3><span class="de">Teammitglied – Fahrwerk</span><span class="en">Team member – Suspension (Fahrwerk)</span></h3>
+<ul class="de">
+<li><span>Konstruktion und Auslegung von Fahrwerkskomponenten für einen Formula-Student-Rennwagen in Siemens NX (3D-Modellierung, Baugruppen, technische Zeichnungen).</span></li>
+<li><span>Begleitung des Produktentstehungsprozesses von der CAD-Konstruktion über die Fertigung bis zur Validierung (Testing).</span></li>
+<li><span>Strukturierte Konstruktionsmethodik und agiles Projektmanagement in einem interdisziplinären, internationalen Team (Formula Student Germany).</span></li>
+</ul>
+<ul class="en">
+<li><span>Design and sizing of suspension components for a Formula Student race car in Siemens NX (3D modeling, assemblies, technical drawings).</span></li>
+<li><span>Following the product development process from CAD design through manufacturing to validation and testing.</span></li>
+<li><span>Structured design methodology and agile project management in an interdisciplinary, international team (Formula Student Germany).</span></li>
+</ul>
+<div class="chips"><span class="chip">Siemens NX</span><span class="chip">Baugruppen</span><span class="chip">Testing</span><span class="chip">Agile</span></div>
+</div>
+</article>
+<article class="job">
+<div class="job-meta">
+<span class="job-date tnum">04/2025 – 12/2026</span>
+<span class="job-co">TELUS Digital</span>
+<span class="job-loc">Essen</span>
+</div>
+<div class="job-body">
+<h3><span class="de">KI-Modell-Training &amp; Quality Assurance Analyst</span><span class="en">AI Model Training &amp; Quality Assurance Analyst</span></h3>
+<ul class="de">
+<li><span><b>KI-Training &amp; Tool-Validierung:</b> Training generativer KI-Modelle durch strukturiertes Content-Labeling sowie systematische Evaluation von Modell-Outputs und KI-Schnittstellen (APIs).</span></li>
+<li><span><b>Multilinguale Qualitätssicherung:</b> Analyse und Validierung komplexer, mehrsprachiger Datensätze (MENA-Region) inklusive Fehleranalyse und Lösung von IT-Tickets.</span></li>
+</ul>
+<ul class="en">
+<li><span><b>AI training &amp; tool validation:</b> training generative AI models through structured content labeling and systematic evaluation of model outputs and AI interfaces (APIs).</span></li>
+<li><span><b>Multilingual quality assurance:</b> analysis and validation of complex multilingual datasets (MENA region), including error analysis and resolving IT tickets.</span></li>
+</ul>
+<div class="chips"><span class="chip">LLM-Evaluation</span><span class="chip">APIs</span><span class="chip">QA</span></div>
+</div>
+</article>
+<article class="job">
+<div class="job-meta">
+<span class="job-date tnum">12/2021 – 10/2023</span>
+<span class="job-co">Deutsch Haus</span>
+<span class="job-loc"><span class="de">Eigenes Start-up · Mansoura, Ägypten</span><span class="en">Own start-up · Mansoura, Egypt</span></span>
+</div>
+<div class="job-body">
+<h3><span class="de">Gründer &amp; Vertriebskoordinator</span><span class="en">Founder &amp; Sales Coordinator</span></h3>
+<ul class="de">
+<li><span>Aufbau und operative Leitung eines Start-ups für Produktion und Vermarktung von Lernmaterialien, von der Prozessgestaltung bis zur Markteinführung.</span></li>
+<li><span>Durchgängige Produktionsprozesse (Druck, Bindung, Verpackung) mit kontinuierlicher Prozessoptimierung.</span></li>
+<li><span>Gesamtverantwortung für Kundenservice, Vertriebssteuerung und Marketing mit messbarer Umsatzsteigerung.</span></li>
+</ul>
+<ul class="en">
+<li><span>Built and ran a start-up producing and selling learning materials, from process design to market launch.</span></li>
+<li><span>End-to-end production processes (printing, binding, packaging) with continuous process optimization.</span></li>
+<li><span>Full responsibility for customer service, sales management and marketing, with measurable revenue growth.</span></li>
+</ul>
+<div class="chips"><span class="chip">Produktion</span><span class="chip">Vertrieb</span><span class="chip">Marketing</span></div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- ================= PROJECTS ================= -->
+<section id="projekte">
+<div class="wrap">
+<div class="head">
+<p class="eyebrow"><span class="de">Projekte</span><span class="en">Projects</span></p>
+<h2><span class="de">Gebaut, nicht nur <mark class="hl">geplant.</mark></span><span class="en">Built, not just <mark class="hl">planned.</mark></span></h2>
+</div>
+<div class="projects">
+<!-- Falcon 28 -->
+<article class="proj proj-wide">
+<div class="proj-visual">
+<span class="fav"><span class="de">mein Lieblingsprojekt!</span><span class="en">my favourite project!</span></span>
+<span class="vis-label"><span class="de">Schematische Darstellung</span><span class="en">Schematic illustration</span></span>
+<div class="app" aria-hidden="true">
+<div class="app-top"><i></i><i></i><i></i><b>Falcon 28</b><span><i class="live-dot"></i>live sync</span></div>
+<div class="app-kpis">
+<div class="app-kpi"><b class="tnum">300+</b><small><span class="de">Kunden</span><span class="en">customers</span></small></div>
+<div class="app-kpi"><b class="tnum">10</b><small><span class="de">Nutzer gleichz.</span><span class="en">users at once</span></small></div>
+<div class="app-kpi"><b>⟳</b><small><span class="de">Echtzeit</span><span class="en">real time</span></small></div>
+</div>
+<div class="app-table">
+<div class="app-row" style="--n:0"><span class="av"></span><span class="bar" style="--bw:72%"></span><em class="q"><span class="de">Angebot</span><span class="en">Quote</span></em><em class="st-open"><span class="de">offen</span><span class="en">open</span></em></div>
+<div class="app-row" style="--n:1"><span class="av"></span><span class="bar" style="--bw:55%"></span><em class="r"><span class="de">Rechnung</span><span class="en">Invoice</span></em><em class="st-paid"><span class="de">bezahlt</span><span class="en">paid</span></em></div>
+<div class="app-row" style="--n:2"><span class="av"></span><span class="bar" style="--bw:84%"></span><em class="q"><span class="de">Angebot</span><span class="en">Quote</span></em><em class="st-paid"><span class="de">angenommen</span><span class="en">accepted</span></em></div>
+<div class="app-row" style="--n:3"><span class="av"></span><span class="bar" style="--bw:63%"></span><em class="r"><span class="de">Rechnung</span><span class="en">Invoice</span></em><em class="st-open"><span class="de">offen</span><span class="en">open</span></em></div>
+</div>
+</div>
+</div>
+<div class="proj-body">
+<div class="proj-title">
+<h3>„Falcon 28“</h3>
+<span class="chip"><span class="de">ERP-/CRM-System · Eigenentwicklung</span><span class="en">ERP/CRM system · own build</span></span>
+</div>
+<p><span class="de">Ein KI-gestütztes ERP- und CRM-System, das manuelle, fehleranfällige Verwaltung durch Echtzeit-Betriebsdaten ersetzt: Kunden, Angebote, Rechnungen, Auftragsmanagement und Finanzkennzahlen in einem System.</span><span class="en">An AI-assisted ERP and CRM system that replaces manual, error-prone administration with real-time operational data: customers, quotes, invoices, order management and financial KPIs in one system.</span></p>
+<ul class="de">
+<li><i data-lucide="users"></i><span>Über 300 Kunden mit ihren Angeboten und Rechnungen im System.</span></li>
+<li><i data-lucide="radio"></i><span>Datenbank-Streaming in Echtzeit mit PostgreSQL / Supabase und API-Integrationen.</span></li>
+<li><i data-lucide="shield-check"></i><span>Server- und Netzwerkkonfiguration selbst umgesetzt: Port-Management, Proxy-, CORS- und Host-Sicherheitsrichtlinien.</span></li>
+<li><i data-lucide="network"></i><span>Secure Tunneling für externen Multi-User-Zugriff mit bis zu 10 gleichzeitigen Nutzern.</span></li>
+</ul>
+<ul class="en">
+<li><i data-lucide="users"></i><span>More than 300 customers with their quotes and invoices in the system.</span></li>
+<li><i data-lucide="radio"></i><span>Real-time database streaming with PostgreSQL / Supabase and API integrations.</span></li>
+<li><i data-lucide="shield-check"></i><span>Server and network setup done myself: port management, proxy, CORS and host security policies.</span></li>
+<li><i data-lucide="network"></i><span>Secure tunneling for external multi-user access with up to 10 concurrent users.</span></li>
+</ul>
+<div class="chips"><span class="chip">React</span><span class="chip">Vite</span><span class="chip">Tailwind CSS</span><span class="chip">PostgreSQL</span><span class="chip">Supabase</span><span class="chip">APIs</span></div>
+</div>
+</article>
+<!-- Formula Student -->
+<article class="proj">
+<div class="proj-visual">
+<span class="vis-label"><span class="de">Frontansicht · Doppelquerlenker</span><span class="en">Front view · double wishbone</span></span>
+<svg viewBox="0 0 360 150" fill="none" style="width:100%;height:auto;margin-top:10px" aria-hidden="true">
+<rect x="12" y="38" width="70" height="74" rx="6" style="fill:var(--surface);stroke:var(--line)" stroke-width="1.5"/>
+<text x="47" y="80" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" style="fill:var(--mute)">CHASSIS</text>
+<path class="flow-dash" d="M82 50 L232 42" style="stroke:var(--lav)" stroke-width="2.5" stroke-dasharray="6 2"/>
+<path class="flow-dash" d="M82 104 L240 112" style="stroke:var(--lav)" stroke-width="2.5" stroke-dasharray="6 2"/>
+<path d="M82 100 L226 52" style="stroke:var(--sky)" stroke-width="1.6" stroke-dasharray="4 3"/>
+<path d="M232 42 L240 112" style="stroke:var(--fg)" stroke-width="3.5" stroke-linecap="round"/>
+<rect x="258" y="18" width="40" height="118" rx="8" style="fill:var(--surface);stroke:var(--mute)" stroke-width="1.5"/>
+<path d="M236 77 L258 77" style="stroke:var(--mute)" stroke-width="1.5"/>
+<g style="fill:var(--bg);stroke:var(--lav)" stroke-width="2">
+<circle class="node-pulse n1" cx="82" cy="50" r="4"/><circle class="node-pulse n2" cx="82" cy="104" r="4"/><circle class="node-pulse n3" cx="232" cy="42" r="4"/><circle class="node-pulse n1" cx="240" cy="112" r="4"/>
+</g>
+<g font-family="JetBrains Mono, monospace" font-size="9" style="fill:var(--mute)">
+<text x="150" y="36">UCA</text><text x="150" y="128">LCA</text>
+<text x="136" y="84" style="fill:var(--sky)">PUSHROD</text><text x="306" y="80">TIRE</text>
+</g>
+<path d="M8 144 L352 144" style="stroke:var(--line)" stroke-width="1"/>
+</svg>
+</div>
+<div class="proj-body">
+<div class="proj-title"><h3><span class="de">Fahrwerk</span><span class="en">Suspension</span></h3><span class="chip">Formula Student</span></div>
+<p><span class="de">Fahrwerksbaugruppen für den Rennwagen der UDE, konstruiert in Siemens NX mit präziser Kinematik und vollständiger Fertigungsdokumentation.</span><span class="en">Suspension assemblies for the UDE race car, designed in Siemens NX with precise kinematics and complete manufacturing documentation.</span></p>
+<ul class="de">
+<li><i data-lucide="move-3d"></i><span>3D-Modellierung und kinematische Baugruppen in Siemens NX.</span></li>
+<li><i data-lucide="file-text"></i><span>Technische Zeichnungen und Dokumentation, ergänzt durch SolidWorks und AutoCAD.</span></li>
+</ul>
+<ul class="en">
+<li><i data-lucide="move-3d"></i><span>3D modeling and kinematic assemblies in Siemens NX.</span></li>
+<li><i data-lucide="file-text"></i><span>Technical drawings and documentation, supported by SolidWorks and AutoCAD.</span></li>
+</ul>
+<div class="chips"><span class="chip">Siemens NX</span><span class="chip">SolidWorks</span><span class="chip">AutoCAD</span></div>
+</div>
+</article>
+<!-- Flows & agents -->
+<article class="proj">
+<div class="proj-visual">
+<span class="vis-label"><span class="de">Flow · Rückstand → Benachrichtigung</span><span class="en">Flow · backorder → notification</span></span>
+<svg viewBox="0 0 360 150" fill="none" style="width:100%;height:auto;margin-top:10px" aria-hidden="true">
+<path class="flow-dash" d="M58 75 H302" style="stroke:var(--mute)" stroke-width="2" stroke-dasharray="6 4"/>
+<g>
+<rect class="node-pulse n1" x="22" y="47" width="72" height="56" rx="14" style="fill:var(--surface);stroke:var(--lav)" stroke-width="2"/>
+<rect class="node-pulse n2" x="144" y="47" width="72" height="56" rx="14" style="fill:var(--surface);stroke:var(--sky)" stroke-width="2"/>
+<rect class="node-pulse n3" x="266" y="47" width="72" height="56" rx="14" style="fill:var(--surface);stroke:var(--mint)" stroke-width="2"/>
+</g>
+<g font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle" style="fill:var(--fg)">
+<text x="58" y="79">D365 F&amp;O</text><text x="180" y="79">Copilot</text><text x="302" y="79">E-Mail</text>
+</g>
+<g font-family="JetBrains Mono, monospace" font-size="8" text-anchor="middle" style="fill:var(--mute)">
+<text x="58" y="122">trigger</text><text x="180" y="122">agent</text><text x="302" y="122">action</text>
+</g>
+<circle class="flow-dot2" cx="58" cy="75" r="5" style="fill:var(--fg)"/>
+</svg>
+</div>
+<div class="proj-body">
+<div class="proj-title"><h3><span class="de">Flows &amp; KI-Agenten</span><span class="en">Flows &amp; AI agents</span></h3><span class="chip">Microsoft 365</span></div>
+<p><span class="de">Automatisierung im Microsoft-Ökosystem: Power-Automate-Flows für die Auftragsüberwachung und agentische KI-Assistenten in Copilot Studio, umgesetzt innerhalb von M365-Berechtigungen und KI-Governance.</span><span class="en">Automation in the Microsoft ecosystem: Power Automate flows for order monitoring and agentic AI assistants in Copilot Studio, built within M365 permissions and AI governance.</span></p>
+<ul class="de">
+<li><i data-lucide="workflow"></i><span>Power Automate: Überwachung verzögerter Auftragspositionen mit automatischer E-Mail-Benachrichtigung.</span></li>
+<li><i data-lucide="bot"></i><span>Copilot Studio: agentische KI-Agenten, inklusive Konzepten für Read-only-Copilot-Assistenten.</span></li>
+</ul>
+<ul class="en">
+<li><i data-lucide="workflow"></i><span>Power Automate: monitoring delayed order lines with automatic email notifications.</span></li>
+<li><i data-lucide="bot"></i><span>Copilot Studio: agentic AI agents, including concepts for read-only Copilot assistants.</span></li>
+</ul>
+<div class="chips"><span class="chip">Power Automate</span><span class="chip">Copilot Studio</span><span class="chip">Dynamics 365</span><span class="chip">M365</span></div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- ================= TOOLBOX ================= -->
+<section id="werkzeuge">
+<div class="wrap">
+<div class="head">
+<p class="eyebrow"><span class="de">Werkzeugkasten</span><span class="en">Toolbox</span></p>
+<h2><span class="de">Womit ich arbeite</span><span class="en">What I work with</span></h2>
+</div>
+<div class="tools">
+<span class="tool"><i data-lucide="box"></i>Siemens NX</span>
+<span class="tool"><i data-lucide="box"></i>SolidWorks</span>
+<span class="tool"><i data-lucide="pen-tool"></i>AutoCAD</span>
+<span class="tool"><i data-lucide="sigma"></i>MATLAB</span>
+<span class="tool"><i data-lucide="workflow"></i>Power Automate</span>
+<span class="tool"><i data-lucide="bot"></i>Copilot Studio</span>
+<span class="tool"><i data-lucide="building-2"></i>Dynamics 365 F&amp;O</span>
+<span class="tool"><i data-lucide="layout-dashboard"></i><span class="de">ERP-/CRM-Systeme</span><span class="en">ERP/CRM systems</span></span>
+<span class="tool"><i data-lucide="terminal"></i>Python (APIs, AI Agents)</span>
+<span class="tool"><i data-lucide="atom"></i>React</span>
+<span class="tool"><i data-lucide="zap"></i>Vite</span>
+<span class="tool"><i data-lucide="wind"></i>Tailwind CSS</span>
+<span class="tool"><i data-lucide="database"></i>Supabase / PostgreSQL</span>
+<span class="tool"><i data-lucide="table-2"></i>SQL / NoSQL</span>
+<span class="tool"><i data-lucide="sheet"></i>MS Excel (Adv.)</span>
+<span class="tool"><i data-lucide="git-branch"></i>Git</span>
+<span class="tool"><i data-lucide="triangle"></i>Vercel</span>
+<span class="tool"><i data-lucide="gauge"></i><span class="de">Prozessoptimierung</span><span class="en">Process optimization</span></span>
+</div>
+</div>
+</section>
+<!-- ================= EDUCATION ================= -->
+<section id="ausbildung">
+<div class="wrap edu">
+<div class="head" style="margin-bottom:0">
+<p class="eyebrow"><span class="de">Ausbildung</span><span class="en">Education</span></p>
+<h2><span class="de">B.Sc. Maschinenbau (ISE)</span><span class="en">B.Sc. Mechanical Engineering (ISE)</span></h2>
+<p class="lead"><span class="de">Universität Duisburg-Essen · seit 01/2023 · Essen. <b>106 ECTS nach 6 Semestern.</b></span><span class="en">University of Duisburg-Essen · since 01/2023 · Essen. <b>106 ECTS after 6 semesters.</b></span></p>
+<span class="head-note"><span class="de">Theorie trifft Werkstatt.</span><span class="en">Theory meets workshop.</span></span>
+</div>
+<div class="edu-card">
+<p><span class="de">Relevante Module</span><span class="en">Relevant modules</span></p>
+<ul class="de"><li>Systemdynamik</li><li>Produktionstechnik</li><li>Automatisierung</li><li>Projektmanagement</li></ul>
+<ul class="en"><li>System Dynamics</li><li>Production Engineering</li><li>Automation</li><li>Project Management</li></ul>
+</div>
+</div>
+</section>
+<!-- ================= OFF THE DESK ================= -->
+<section id="privat">
+<div class="wrap">
+<div class="head" style="margin-bottom:0">
+<p class="eyebrow"><span class="de">Abseits vom Schreibtisch</span><span class="en">Away from the desk</span></p>
+<h2><span class="de">Ich schraube auch privat an Autos. <mark class="hl">Ehrlich.</mark></span><span class="en">I also work on cars in my free time. <mark class="hl">Honestly.</mark></span></h2>
+</div>
+<div class="pixel-row" aria-hidden="true">
+<svg id="px-car2" style="width:min(220px,46vw)"></svg>
+<svg id="px-gear2" class="spin-steps" style="width:min(84px,18vw)"></svg>
+</div>
+<div class="off-grid">
+<article class="off wiggle">
+<span class="ico"><i data-lucide="wrench"></i></span>
+<h3><span class="de">Werkstatt in Essen</span><span class="en">Workshop in Essen</span></h3>
+<p><span class="de">Praktische Erfahrung in der Fahrzeugwartung, mit den Händen am echten Bauteil.</span><span class="en">Hands-on experience in vehicle maintenance, working on real parts.</span></p>
+</article>
+<article class="off wiggle">
+<span class="ico"><i data-lucide="award"></i></span>
+<h3><span class="de">Grundlagen der Kfz-Technik</span><span class="en">Automotive Engineering Fundamentals</span></h3>
+<p><span class="de">Zertifikatskurs zu Motoren, Fahrwerk, Bremssystemen und Fahrzeugtechnik.</span><span class="en">Certificate course covering engines, suspension, braking systems and vehicle technology.</span></p>
+</article>
+<article class="off wiggle">
+<span class="ico"><i data-lucide="languages"></i></span>
+<h3><span class="de">Sprachen</span><span class="en">Languages</span></h3>
+<div class="langs">
+<div><span class="de">Deutsch</span><span class="en">German</span><span><span class="de">verhandlungssicher</span><span class="en">business fluent</span></span></div>
+<div><span class="de">Englisch</span><span class="en">English</span><span><span class="de">verhandlungssicher</span><span class="en">business fluent</span></span></div>
+<div><span class="de">Arabisch</span><span class="en">Arabic</span><span><span class="de">Muttersprache</span><span class="en">native</span></span></div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- ================= CONTACT ================= -->
+<section id="kontakt">
+<div class="wrap contact">
+<div class="head" style="margin-bottom:0">
+<p class="eyebrow"><span class="de">Kontakt</span><span class="en">Contact</span></p>
+<h2><span class="de">Lassen Sie uns <span class="spark">sprechen.</span></span><span class="en">Let's <span class="spark">talk.</span></span></h2>
+<p class="lead"><span class="de">Offen für Werkstudentenstellen und Praktika in Maschinenbau, Prozessoptimierung und digitaler Transformation.</span><span class="en">Open to working-student positions and internships in mechanical engineering, process optimization and digital transformation.</span></p>
+<span class="head-note"><span class="de">gern auf Deutsch oder Englisch</span><span class="en">happy to talk in German or English</span></span>
+</div>
+<div class="contact-actions">
+<div class="mailbox">
+<a href="mailto:ahmedhani2003@gmx.de"><i data-lucide="mail"></i><span id="email">ahmedhani2003@gmx.de</span></a>
+<button id="copy-email" type="button" aria-label="E-Mail-Adresse kopieren / Copy email address"><i data-lucide="copy"></i><span id="copy-label">Kopieren</span></button>
+</div>
+<a class="linkedin" href="https://www.linkedin.com/in/ahmed-hani-mohamed-40975a334" target="_blank" rel="noopener">
+<span><i data-lucide="linkedin"></i><span class="de">Auf LinkedIn vernetzen</span><span class="en">Connect on LinkedIn</span></span>
+<i data-lucide="arrow-up-right"></i>
+</a>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="wrap foot">
+<span>© <span id="year">2026</span> Ahmed Hani · Essen</span>
+<span><span class="de">Maschinenbau · Prozessautomatisierung · KI-Agenten</span><span class="en">Mechanical engineering · Process automation · AI agents</span></span>
+</div>
+</footer>
+<!-- floating pill nav -->
+<nav class="pill" aria-label="Navigation">
+<a href="#arbeit"><span class="de">Arbeit</span><span class="en">Work</span></a>
+<a href="#projekte"><span class="de">Projekte</span><span class="en">Projects</span></a>
+<a href="#kontakt"><span class="de">Kontakt</span><span class="en">Contact</span></a>
+<button id="lang-toggle" type="button" aria-label="Switch to English">EN</button>
+</nav>
+<div class="clock" aria-hidden="true"><i data-lucide="map-pin"></i><span id="clock">Essen</span></div>
+<script src="https://unpkg.com/lucide@0.344.0/dist/umd/lucide.min.js"></script>
+<script>
+(function () {
+try { lucide.createIcons(); } catch (e) {}
+const root = document.documentElement;
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('year').textContent = new Date().getFullYear();
+const dict = {
+de: { ghost: ['konstruiert…', 'automatisiert…', 'baut Agenten…', 'validiert KPIs…'], copy: 'Kopieren', copied: 'Kopiert', selected: 'Markiert', toggle: 'EN', toggleLabel: 'Switch to English' },
+en: { ghost: ['is engineering…', 'is automating…', 'is building agents…', 'is validating KPIs…'], copy: 'Copy', copied: 'Copied', selected: 'Selected', toggle: 'DE', toggleLabel: 'Auf Deutsch umschalten' }
+};
+let lang = 'de', gi = 0;
+try { const s = localStorage.getItem('ah-lang'); if (s === 'en' || s === 'de') lang = s; } catch (e) {}
+const toggle = document.getElementById('lang-toggle');
+const copyLabel = document.getElementById('copy-label');
+const ghostText = document.getElementById('ghost-text');
+function setLang(l) {
+lang = l; root.dataset.lang = l; root.lang = l;
+toggle.textContent = dict[l].toggle; toggle.setAttribute('aria-label', dict[l].toggleLabel);
+copyLabel.textContent = dict[l].copy;
+ghostText.textContent = 'Ahmed ' + dict[l].ghost[gi % dict[l].ghost.length];
+try { localStorage.setItem('ah-lang', l); } catch (e) {}
+}
+setLang(lang);
+toggle.addEventListener('click', () => setLang(lang === 'de' ? 'en' : 'de'));
+if (!reduce) setInterval(() => { gi++; ghostText.textContent = 'Ahmed ' + dict[lang].ghost[gi % dict[lang].ghost.length]; }, 2600);
+function pixel(svg, rows, pal) {
+if (!svg) return;
+const h = rows.length, w = rows[0].length;
+svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+svg.setAttribute('shape-rendering', 'crispEdges');
+let out = '';
+rows.forEach((r, y) => [...r].forEach((c, x) => { if (pal[c]) out += '<rect x="' + x + '" y="' + y + '" width="1.02" height="1.02" style="fill:' + pal[c] + '"/>'; }));
+svg.innerHTML = out;
+}
+const car = [
+'WWWW....................',
+'.WW............HHH......',
+'.WW...........HHVVH.....',
+'.WW....LLLLLLLLLLLLL....',
+'LLLLLLLLLSSSSSSSSLLLLLL.',
+'LKKKKKLLLLLLLLLLKKKKKLLL',
+'KKKKKKK........KKKKKKK..',
+'KKKhKKK........KKKhKKK..',
+'KKKKKKK........KKKKKKK..',
+'.KKKKK..........KKKKK...'
+];
+const carPal = { W: 'var(--sky)', H: 'var(--paper)', V: 'var(--lav-ink)', L: 'var(--lav)', S: 'var(--sky)', K: '#6b6878', h: 'var(--paper)' };
+pixel(document.getElementById('px-car'), car, carPal);
+pixel(document.getElementById('px-car2'), car, carPal);
+const gear = [];
+for (let y = 0; y < 16; y++) {
+let row = '';
+for (let x = 0; x < 16; x++) {
+const dx = x - 7.5, dy = y - 7.5, r = Math.hypot(dx, dy);
+const a = (Math.atan2(dy, dx) + Math.PI) / (2 * Math.PI);
+const tooth = Math.floor(a * 16) % 2 === 0;
+if (r < 2.4) row += '.';
+else if (r < 5.4) row += r < 3.4 ? 'D' : 'G';
+else if (r < 7.6 && tooth) row += 'G';
+else row += '.';
+}
+gear.push(row);
+}
+const gearPal = { G: 'var(--lav)', D: 'var(--sky)' };
+pixel(document.getElementById('px-gear'), gear, gearPal);
+pixel(document.getElementById('px-gear2'), gear, gearPal);
+const board = document.getElementById('board');
+board.querySelectorAll('.sticker').forEach((el) => {
+let sx = 0, sy = 0, bx = 0, by = 0, dragging = false;
+el.addEventListener('pointerdown', (e) => {
+if (e.button !== undefined && e.button !== 0) return;
+dragging = true; el.classList.add('dragging');
+try { el.setPointerCapture(e.pointerId); } catch (err) {}
+sx = e.clientX; sy = e.clientY;
+bx = parseFloat(el.style.getPropertyValue('--dx')) || 0;
+by = parseFloat(el.style.getPropertyValue('--dy')) || 0;
+});
+el.addEventListener('pointermove', (e) => {
+if (!dragging) return;
+const bw = board.clientWidth, bh = board.clientHeight, w = el.offsetWidth, h = el.offsetHeight;
+let nx = bx + e.clientX - sx, ny = by + e.clientY - sy;
+nx = Math.max(-el.offsetLeft - w * .15, Math.min(bw - el.offsetLeft - w * .85, nx));
+ny = Math.max(-el.offsetTop - h * .15, Math.min(bh - el.offsetTop - h * .85, ny));
+el.style.setProperty('--dx', nx + 'px'); el.style.setProperty('--dy', ny + 'px');
+});
+const end = () => { dragging = false; el.classList.remove('dragging'); };
+el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end);
+});
+function burst(el, n) {
+if (reduce) return;
+for (let i = 0; i < n; i++) {
+const s = document.createElement('span'); s.className = 'star';
+s.style.left = (Math.random() * 100) + '%'; s.style.top = (Math.random() * 80) + '%';
+s.style.setProperty('--sx', (Math.random() * 40 - 20) + 'px');
+s.style.setProperty('--sy', (Math.random() * -30 - 6) + 'px');
+s.style.background = Math.random() > .5 ? 'var(--sky)' : 'var(--lav)';
+el.appendChild(s); setTimeout(() => s.remove(), 950);
+}
+}
+document.querySelectorAll('.spark').forEach((el) => {
+let last = 0;
+el.addEventListener('pointermove', () => { const t = Date.now(); if (t - last > 90) { last = t; burst(el, 2); } });
+el.addEventListener('pointerenter', () => burst(el, 5));
+});
+document.querySelectorAll('.spark[data-auto]').forEach((el) => {
+setTimeout(() => burst(el, 10), 900);
+if (!reduce) setInterval(() => burst(el, 6), 5200);
+});
+const clock = document.getElementById('clock');
+function tick() {
+try {
+const t = new Intl.DateTimeFormat('de-DE', { timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit' }).format(new Date());
+clock.textContent = 'Essen · ' + t;
+} catch (e) { clock.textContent = 'Essen'; }
+}
+tick(); setInterval(tick, 30000);
+const btn = document.getElementById('copy-email');
+btn.addEventListener('click', () => {
+const done = (k) => { copyLabel.textContent = dict[lang][k]; setTimeout(() => (copyLabel.textContent = dict[lang].copy), 1800); };
+const fallback = () => {
+const r = document.createRange(); r.selectNodeContents(document.getElementById('email'));
+const s = getSelection(); s.removeAllRanges(); s.addRange(r); done('selected');
+};
+if (navigator.clipboard && navigator.clipboard.writeText) {
+navigator.clipboard.writeText('ahmedhani2003@gmx.de').then(() => done('copied'), fallback);
+} else { fallback(); }
+});
+})();
+</script>
+</body>
+</html>
